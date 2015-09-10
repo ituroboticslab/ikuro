@@ -5,11 +5,9 @@ project(ikuro_control)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  roscpp
-  rospy
-  std_msgs
+  roslaunch
 )
-
+roslaunch_add_file_check(launch)
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
 
@@ -166,7 +164,9 @@ include_directories(
 #   FILES_MATCHING PATTERN "*.h"
 #   PATTERN ".svn" EXCLUDE
 # )
-
+install(DIRECTORY config launch scripts
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+)
 ## Mark other files for installation (e.g. launch and bag files, etc.)
 # install(FILES
 #   # myfile1

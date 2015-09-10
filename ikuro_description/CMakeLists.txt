@@ -5,9 +5,7 @@ project(ikuro_description)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  roscpp
-  rospy
-  std_msgs
+  roslaunch
 )
 
 ## System dependencies are found with CMake's conventions
@@ -106,6 +104,11 @@ catkin_package(
 #  DEPENDS system_lib
 )
 
+catkin_add_env_hooks(50.ikuro_description
+  SHELLS sh DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/env-hooks)
+
+roslaunch_add_file_check(launch)
+
 ###########
 ## Build ##
 ###########
@@ -173,6 +176,12 @@ include_directories(
 #   # myfile2
 #   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 # )
+
+install(
+  DIRECTORY launch meshes urdf
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+)
+
 
 #############
 ## Testing ##
