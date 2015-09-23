@@ -15,11 +15,11 @@ Software License Agreement (BSD)
   <arg name="imu_enabled" default="true"/>
 
 <!-- Front Laser -->
-  <include file="$(find ikuro_navigation)/launch/lms200.launch" if="$(arg laser_enabled) />
+  <include file="$(find ikuro_navigation)/launch/lms200.launch" if="$(arg laser_enabled)" />
 <!-- Xsens IMU -->
-  <include file="$(find ikuro_navigation)/launch/xsens.launch" if="$(arg imu_enabled) />
+  <include file="$(find ikuro_navigation)/launch/xsens.launch" if="$(arg imu_enabled)" />
 <!-- Kinect -->
-  <include file="$(find ikuro_navigation)/launch/kinect.launch" if="$(arg kinect_enabled) />
+  <include file="$(find ikuro_navigation)/launch/kinect.launch" if="$(arg kinect_enabled)" />
 
 <!-- AMCL Localization -->
   <arg name="use_map_topic" default="true"/>
