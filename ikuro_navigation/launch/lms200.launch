@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<launch>
+    <!--  lms200 front laser -->
+
+  <arg name="lms200_enabled" default="$(optenv HUSKY_LMS200_ENABLED true)" />
+  <group if="$(arg lms200_enabled)">
+
+  <node pkg="sicktoolbox_wrapper" type="sicklms" name="front_sick">
+    <param name="port" value="/dev/sicklms200" />
+   <!-- <param name="port" value="/dev/laser_front" />   -->
+    <param name="baud" value="38400" />
+    <param name="connect_delay" value="30" />		
+    <param name="frame_id" value="/front_sick" />
+    <param name="inverted" value="false" />
+    <!-- <remap from="scan" to="front_sick" /> -->
+  </node>
+
+<!--  
+  <node pkg="tf" type="static_transform_publisher" name="laser_to_odom_brc" args="0 0 0 0 0 0 /front_sick /odom 100" />
+-->
+<node pkg="tf" type="static_transform_publisher" name="laser_tf_broadcaster" args="0 0 0.1 0 0 0 base_link front_sick 100" />
+
+  </group>
+
+  
+
+
+
+
+  <!--  xsens package 
+  	<node pkg="xsens_driver" type="mtnode.py" name="xsens_driver" output="screen" >
+        <param name="frame_id" type="string" value="imu_link" />
+		<param name="port" value="/dev/xsens" />
+        <param name="baudrate" value="115200" />
+	</node>
+-->
+</launch>
