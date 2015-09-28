@@ -15,7 +15,7 @@ Software License Agreement (BSD)
 <!-- Launch sensors -->
   <arg name="laser_enabled" default="$(optenv HUSKY_LMS1XX_ENABLED true)"/>
   <arg name="kinect_enabled" default="false"/>
-  <arg name="imu_enabled" default="true"/>
+  <arg name="imu_enabled" default="false"/>
 
 <!-- Front Laser -->
   <include file="$(find ikuro_navigation)/launch/lms200.launch" if="$(arg laser_enabled)" />
