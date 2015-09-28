@@ -1,4 +1,12 @@
 <?xml version="1.0"?>
+<!--
+Software License Agreement (BSD)
+
+\file      move_base.launch
+\authors   Onur Sencan <osencan@itu.edu.tr>
+\copyright Copyright (c) 2015
+
+-->
 <launch>
 <!--  xsens package -->
   	<node pkg="xsens_driver" type="mtnode.py" name="xsens_driver" output="screen" >
@@ -6,7 +14,7 @@
 		<param name="port" value="/dev/xsens" />
         <param name="baudrate" value="115200" />
 	</node>
-
+ <!-- static_transform_publisher x y z yaw pitch roll frame_id child_frame_id period_in_ms -->
 	<node pkg="tf" type="static_transform_publisher" name="xsens_tf_broadcaster" args="-0.01 0 0 0 0 0 base_link imu_link 10" />
 
 
