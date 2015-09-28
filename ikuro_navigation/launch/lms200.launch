@@ -27,7 +27,7 @@ Software License Agreement (BSD)
   <node pkg="tf" type="static_transform_publisher" name="laser_to_odom_brc" args="0 0 0 0 0 0 /front_sick /odom 100" />
 -->
  <!-- static_transform_publisher x y z yaw pitch roll frame_id child_frame_id period_in_ms -->
-<node pkg="tf" type="static_transform_publisher" name="laser_tf_broadcaster" args="0.28 0 0.07 0 0 0 base_link front_sick 100" />
+<node pkg="tf" type="static_transform_publisher" name="laser_tf_broadcaster" args="0.28 0 0.07 0 0 0 base_link front_sick 10" />
 
   </group>
 
