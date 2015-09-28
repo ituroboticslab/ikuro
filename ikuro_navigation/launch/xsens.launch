@@ -7,4 +7,7 @@
         <param name="baudrate" value="115200" />
 	</node>
 
+	<node pkg="tf" type="static_transform_publisher" name="xsens_tf_broadcaster" args="-0.01 0 0 0 0 0 base_link imu_link 10" />
+
+
 </launch>
