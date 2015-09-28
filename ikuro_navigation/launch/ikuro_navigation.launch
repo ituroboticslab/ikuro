@@ -17,6 +17,12 @@ Software License Agreement (BSD)
   <arg name="kinect_enabled" default="false"/>
   <arg name="imu_enabled" default="false"/>
 
+  <arg name="gmapping_enabled" default="true"/>
+  <arg name="amcl_enabled" default="true"/>
+  <arg name="planners_enabled" default="false"/>
+
+
+
 <!-- Front Laser -->
   <include file="$(find ikuro_navigation)/launch/lms200.launch" if="$(arg laser_enabled)" />
 <!-- Xsens IMU -->
@@ -28,15 +34,15 @@ Software License Agreement (BSD)
 
 
 <!-- Gmapping -->
-  <include file="$(find ikuro_navigation)/launch/gmapping.launch" />
+  <include file="$(find ikuro_navigation)/launch/gmapping.launch" if="$(arg gmapping_enabled)" />
 
   <!-- AMCL Localization to find the location wrt map created -->
-  <include file="$(find ikuro_navigation)/launch/amcl.launch" />
+  <include file="$(find ikuro_navigation)/launch/amcl.launch" if="$(arg amcl_enabled)" />
 
 
  <!-- local and global planners using the localization and map information-->
 
-  <include file="$(find ikuro_navigation)/launch/move_base.launch" />
+  <include file="$(find ikuro_navigation)/launch/move_base.launch" if="$(arg planners_enabled)" />
 
 
 
