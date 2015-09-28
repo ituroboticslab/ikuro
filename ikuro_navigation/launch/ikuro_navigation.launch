@@ -18,7 +18,7 @@ Software License Agreement (BSD)
   <arg name="imu_enabled" default="false"/>
 
   <arg name="gmapping_enabled" default="true"/>
-  <arg name="amcl_enabled" default="true"/>
+  <arg name="amcl_enabled" default="false"/>
   <arg name="planners_enabled" default="false"/>
 
 
