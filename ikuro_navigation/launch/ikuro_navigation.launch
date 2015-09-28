@@ -26,6 +26,9 @@ Software License Agreement (BSD)
 
   <!-- include file="$(find ikuro_navigation)/launch/move_base_mapless_demo.launch" / -->
 
+<!-- Gmapping -->
+  <include file="$(find ikuro_navigation)/launch/gmapping.launch" />
+
 
 
 
