@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!--
+Software License Agreement (BSD)
+\file      hokuyo_front.launch
+\authors   Onur Sencan <osencan@itu.edu.tr>
+\copyright Copyright (c) 2016
+-->
+<launch>
+<arg name="hokuyo_front_enabled" default="$(optenv HUSKY_HFRONT_ENABLED true)" />
+<group if="$(arg hokuyo_front_enabled)">
+<node pkg="hokuyo_node" type="hokuyo_node"  name="hokuyo_node output="screen">
+    <param name="serial_port" type="string" value="/dev/ttyACM0"/> 
+    <param name="serial_baud" value="115200" />
+    <param name="calibrate_time" type="bool" value="true" />		
+    <param name="frame_id" value="/front_hokuyo" />
+    <param name="angle_min" type="double" value="-1.0" />
+    <param name="angle_max" type="double" value="1.0" />
+    
+    <param name="publish_intensity" type="bool" value="false" />
+    <param name="skip" type="int" value="1" />
+
+</node>
+
+
+<!-- static_transform_publisher x y z yaw pitch roll frame_id child_frame_id period_in_ms -->
+<node pkg="tf" type="static_transform_publisher" name="laser_tf_broadcaster" args="0.28 0 0.07 0 0 0 base_link front_hokuyo 
+  
+</group>
+
+</launch>
