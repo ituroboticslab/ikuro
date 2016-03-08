@@ -14,11 +14,11 @@ Software License Agreement (BSD)
 
 <!-- Launch sensors -->
   <arg name="laser_enabled" default="$(optenv HUSKY_LMS1XX_ENABLED true)"/>
-  <arg name="kinect_enabled" default="false"/>
+  <arg name="kinect_enabled" default="true"/>
   <arg name="imu_enabled" default="false"/>
 
   <arg name="gmapping_enabled" default="true"/>
-  <arg name="amcl_enabled" default="false"/>
+  <arg name="amcl_enabled" default="true"/>
   <arg name="planners_enabled" default="true"/>
 
 
@@ -45,6 +45,8 @@ Software License Agreement (BSD)
   <include file="$(find ikuro_navigation)/launch/move_base.launch" if="$(arg planners_enabled)" />
 
   <!-- Run a static transform between /odom and /map  why we need this??-->
-  <node pkg="tf" type="static_transform_publisher" name="odom_map_broadcaster" args="0 0 0 0 0 0 /map /odom 100" />
+
+
+  <!-- node pkg="tf" type="static_transform_publisher" name="odom_map_broadcaster" args="0 0 0 0 0 0 /map /base_link 100" / -->
 
 </launch>
