@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!--
+Software License Agreement (BSD)
+
+\file      move_base.launch
+\authors   Onur Sencan <osencan@itu.edu.tr>
+\copyright Copyright (c) 2015
+
+-->
+<launch>
+    <!--  hokuyo front laser -->
+
+  <arg name="hokuyo_node" default="$(optenv HUSKY_HOKUYO_ENABLED true)" />
+  <group if="$(arg hokuyo_enabled)">
+
+  <node pkg="hokuyo_node" type="hokuyo" name="front_hokuyo">
+     <param name="serial_port" value="/dev/ttyACM0" />
+     <param name="serial_baud" value="115200" />          <!int>
+     <param name="frame_id" value="laser" />              <!string>
+     <param name="calibrate_time" value="true" />         <!bool>
+     <param name="time_ofset" value="0.0" />              <!double>
+     <param name="angle_min" value="-1.5126" />           <!double>
+     <param name="angle_max" value="1.5126" />            <!double>
+     <param name="skip" value="0" />                      <!int>
+    <!-- <remap from="scan" to="front_hokuyo" /> -->
+  </node>
+
+<!--  
+  <node pkg="tf" type="static_transform_publisher" name="laser_to_odom_brc" args="0 0 0 0 0 0 /front_hokuyo /odom 100" />
+-->
+ <!-- static_transform_publisher x y z yaw pitch roll frame_id child_frame_id period_in_ms -->
+<node pkg="tf" type="static_transform_publisher" name="laser_tf_broadcaster" args="0.28 0 0.07 0 0 0 base_link front_hokuyo 10" />
+
+  </group>
+
+  
+
+
+
+
+  <!--  xsens package 
+  	<node pkg="xsens_driver" type="mtnode.py" name="xsens_driver" output="screen" >
+        <param name="frame_id" type="string" value="imu_link" />
+		<param name="port" value="/dev/xsens" />
+        <param name="baudrate" value="115200" />
+	</node>
+-->
+</launch>
