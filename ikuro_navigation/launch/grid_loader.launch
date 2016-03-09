@@ -1,0 +1,17 @@
+<launch>
+  <machine name="husky1" address="husky@roboticslab.local" env-loader="/opt/ros/indigo/env.sh" user="husky"/>
+
+  <!-- Launch the grid map simple demo node -->
+  <node machine="husky1" pkg="grid_map_demos" type="simple_demo" name="grid_map_simple_demo" output="screen" />
+
+  <!-- Launch the grid map simple demo node -->
+  <node machine="husky1" pkg="grid_map_visualization" type="grid_map_visualization" name="grid_map_visualization" output="screen">
+  <!-- ROS_MASTER is husky. Thus' below rosparam call should be for husky1  -->
+   <rosparam command="load" file="$(find grid_map_demos)/config/simple_demo.yaml" />
+
+  <!-- Launch RViz with the demo configuration in Main machine -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find grid_map_demos)/rviz/grid_map_demo.rviz" />
+
+
+</launch>
+
